@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: ../
+      dockerfile: ./docker/Dockerfile
+    depends_on:
+      - redis
+    env_file:
+      - ../.env
+    ports:
+      - "${PORT:-30766}:30766"  # 如果 .env 中有 PORT，则使用，否则默认 30766
+    volumes:
+      - ../:/app
+      - /app/node_modules
+      - ../firebase-service-account.json:/secrets/firebase-service-account.json
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"

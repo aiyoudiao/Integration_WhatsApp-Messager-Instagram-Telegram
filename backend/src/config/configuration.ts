@@ -1,0 +1,11 @@
+export default () => ({
+  port: parseInt(process.env.PORT || '3000', 10),
+  redis: {
+    host: process.env.REDIS_HOST || 'redis',
+    port: parseInt(process.env.REDIS_PORT || '6379', 10),
+  },
+  firebase: {
+    serviceAccountKeyPath:
+      process.env.FIREBASE_ADMIN_SDK_PATH || './firebase-service-account.json',
+  },
+});
